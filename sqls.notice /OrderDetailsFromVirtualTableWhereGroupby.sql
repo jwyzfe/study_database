@@ -1,0 +1,11 @@
+SELECT 	SUM(T_OUTER_OD.Quantity) AS Quantity_sum,
+		T_OUTER_OD.OrderID, 
+        COUNT(*) AS ORDER_COUNT
+       
+FROM (
+    SELECT T_INNER_OD.*
+    FROM OrderDetails AS T_INNER_OD
+    WHERE T_INNER_OD.OrderID BETWEEN 10284 AND 10437
+) AS T_OUTER_OD
+GROUP BY T_OUTER_OD.OrderID
+;
