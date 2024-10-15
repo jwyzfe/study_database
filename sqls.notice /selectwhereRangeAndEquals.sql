@@ -1,0 +1,5 @@
+Number of Records: 2
+SELECT * FROM Customers
+WHERE CUSTOMERID >= 50 AND CUSTOMERID <= 89
+AND CITY = 'LONDON'
+;
