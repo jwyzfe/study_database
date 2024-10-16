@@ -1,4 +1,4 @@
-SELECT SupplierName, COUNT(O.OrderID) AS OrderCount
+SELECT S.SupplierName, COUNT(O.OrderID) AS OrderCount
 FROM Orders AS O
 LEFT JOIN OrderDetails AS OD
 	ON O.OrderID = OD.OrderID
