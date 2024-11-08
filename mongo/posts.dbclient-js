@@ -1,0 +1,49 @@
+db('ozstudy_finance').collection('study_posts').find({}).toArray();
+
+
+//title에서 Title있는 레코드 찾기
+{"title" : /Title/}
+
+//category에서 E 시작하는 레코드 찾기
+{category: /^Eve/}
+
+//title에서 숫자 3으로 끝나는 레코드 찾기
+//title = "3"->{title : /3$/}
+//[34]-->3과4로 끝나는것
+//\d -->숫자로 끝나는것
+i -->대소문자 상관없이 출력
+db('study_finance').collection('study_posts').find(
+                                                    //{"title" : /Title/}
+                                                    //{category: /^Eve/}
+                                                    //title = "3"->{title : /3$/}
+                                                    //{title : /\d/}
+                                                    //{tags : /news/}
+                                                    {title : /post/i}
+).toArray()
+
+db('ozstudy_finance').collection('study_posts').insertMany([
+  {
+    "title": "Post Title 2",
+    "body": "Body of post.",
+    "category": "Event",
+    "likes": 2,
+    "tags": ["news", "events"],
+    "date": "2023-10-01T10:00:00Z"
+  },
+  {
+    "title": "Post Title 3",
+    "body": "Body of post.",
+    "category": "Technology",
+    "likes": 3,
+    "tags": ["news", "events"],
+    "date": "2023-10-02T10:00:00Z"
+  },
+  {
+    "title": "Post Title 4",
+    "body": "Body of post.",
+    "category": "Event",
+    "likes": 4,
+    "tags": ["news", "events"],
+    "date": "2023-10-03T10:00:00Z"
+  }
+])

@@ -51,6 +51,7 @@ db('ozstudy_finance').collection('find_stocks').find({}).toArray();
 //symbol이 "AAPL"이고 date가 "2023-10-02"에서 "2023-10-04" 사이에 해당하는 모든 문서를 조회하세요.
 db("ozstudy_finance").collection("find_stocks").find({$and: [{ symbol: "AAPL" },{ date: { $gte: "2023-10-02", $lte: "2023-10-04" } }]}).toArray();
 
+
 //특정 가격 범위에 있는 주식 조회
 //price가 300에서 500 사이인 모든 주식 데이터를 조회하세요.
 db("ozstudy_finance").collection("find_stocks").find({
@@ -95,3 +96,23 @@ db("ozstudy_finance").collection("find_stocks").find({$and: [{ $or: [ { symbol: 
 db("ozstudy_finance").collection("find_stocks").find({$and: [{ $or: [ { symbol: "META" }, { symbol: "NFLX" } ] },{ $or: [ { volume: { $gte: 5000 } }, { price: { $gte: 650 } } ] }]}).toArray();
 
 
+
+
+db("ozstudy_finance").collection("find_stocks").find().toArray()
+
+//.sort(1or-1)올림차순 내림차순
+//limit:상위 몇개만
+//.skip().limit()상위 몇개 빼고 출력 --> 페이지네이션할때 쓰임
+ db("ozstudy_finance").collection("find_stocks").find(
+                                                  {}
+                                                  ).sort({price:-1}).skip(2).limit(4).toArray();
+
+
+// 값이 없는 데이터 조회 : price 필드가 null인 데이터를 반환
+db("ozstudy_finance").collection("find_stocks").find(
+                                                      {"price" : "null"}).toArray();
+
+
+//다중 필드 검색 (OR 조건) : symbol이 "AAPL" 또는 "TSLA"이거나, price가 3000보다 큰 데이터를 검색
+
+db("ozstudy_finance").collection("find_stocks").find($or[{$or[{symbol: "AAPL"},{symbol: "TSLA"}}],{price : {$gte : 3000 }]}).toArray();
